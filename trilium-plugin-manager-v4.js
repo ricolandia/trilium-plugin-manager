@@ -205,6 +205,15 @@ $root.html(`
     color: var(--muted);
   }
   .btn-download:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-howto {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    float: left;
+  }
+  .btn-howto:hover { border-color: var(--accent); color: var(--accent); }
 
   /* ── Estados ── */
   .state-center {
@@ -513,24 +522,32 @@ function cardHTML(p) {
   const btnClass     = hasSourceUrl ? 'btn-install' : 'btn-download';
 
   const tagsHtml = (p.tags || []).map(t => `<span class="tag">${escHtml(t)}</span>`).join('');
+  const hasHowto = !!p.homepage;
+
+  let howtoHtml = hasHowto
+    ? `<button class="btn btn-howto" data-plugin-id="${escHtml(p.id)}">📖 How to</button>`
+    : '';
 
   let cardClass  = 'card';
   let footerHtml = '';
 
   if (!isInstalled) {
     cardClass  = 'card';
-    footerHtml = `<span></span>
+    footerHtml = `${howtoHtml}
+      <span></span>
       <button class="btn ${btnClass}" data-plugin-id="${escHtml(p.id)}">${btnLabel}</button>`;
   } else if (hasUpdate) {
     cardClass  = 'card has-update';
-    footerHtml = `<span class="badge-update">↑ v${escHtml(installedVer)} → v${escHtml(p.version)}</span>
+    footerHtml = `${howtoHtml}
+      <span class="badge-update">↑ v${escHtml(installedVer)} → v${escHtml(p.version)}</span>
       <div style="display:flex;gap:6px">
         <button class="btn ${btnClass}" data-plugin-id="${escHtml(p.id)}">${btnLabel}</button>
         <button class="btn btn-uninstall" data-plugin-id="${escHtml(p.id)}">✕</button>
       </div>`;
   } else {
     cardClass  = 'card is-installed';
-    footerHtml = `<span class="badge-ok">✓ v${escHtml(installedVer)}</span>
+    footerHtml = `${howtoHtml}
+      <span class="badge-ok">✓ v${escHtml(installedVer)}</span>
       <div style="display:flex;gap:6px">
         <button class="btn btn-reinstall" data-plugin-id="${escHtml(p.id)}">↺</button>
         <button class="btn btn-uninstall" data-plugin-id="${escHtml(p.id)}">✕</button>
@@ -726,6 +743,12 @@ $root.on('click', '.btn-uninstall', function(e) {
   const $btn = $(this);
   const p = pluginsMap[$btn.data('plugin-id')];
   if (p) uninstallPlugin(p, $btn);
+});
+
+$root.on('click', '.btn-howto', function(e) {
+  e.preventDefault();
+  const p = pluginsMap[$(this).data('plugin-id')];
+  if (p && p.homepage) window.open(p.homepage, '_blank', 'noopener');
 });
 
 // ── START ─────────────────────────────────────────────────────────

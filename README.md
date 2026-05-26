@@ -102,6 +102,7 @@ Create a public [GitHub Gist](https://gist.github.com) with a `registry.json` fi
 | `author` | | Author name |
 | `description` | | Short card description |
 | `tags` | | Array of tag strings |
+| `homepage` | | URL to the plugin's docs or repository — shows a "How to" button on the card |
 | `sourceUrl` | | **Recommended.** Raw URL to the `.js`/`.jsx` source file |
 | `zipUrl` | | Legacy URL to a Trilium export ZIP |
 

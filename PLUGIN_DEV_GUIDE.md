@@ -199,6 +199,7 @@ Users add your registry URL as `#registryUrl` on their `plugin-registry` note.
 | `author` | | Shown on the card. |
 | `description` | | Short text shown below the name. |
 | `tags` | | Array of tag strings shown as pills. |
+| `homepage` | | URL to docs or repository — shows a "How to" button on the card |
 | `sourceUrl` | | **Recommended.** Raw URL to the `.js`/`.jsx` source. |
 | `zipUrl` | | Legacy fallback. URL to a Trilium export ZIP. |
 

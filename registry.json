@@ -13,6 +13,7 @@
       "description": "Simple Weekly planning board with Monday–Sunday columns.",
       "version": "1.0.0",
       "author": "ecodiv",
+      "homepage": "https://github.com/ecodiv/Trilium_scripts",
       "tags": ["productivity", "planning", "kanban"],
       "sourceUrl": "https://raw.githubusercontent.com/ecodiv/Trilium_scripts/main/weeklyplanner/planner.jsx"
       },
@@ -22,6 +23,7 @@
       "description": "Enhances TriliumNext's Excalidraw integration: create child notes directly from shapes, assign relation types per arrow, and batch-save all links at once.",
       "version": "1.0.0",
       "author": "ricolandia",
+      "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit",
       "tags": ["canvas", "excalidraw", "relations", "visual"],
       "sourceUrl": "https://raw.githubusercontent.com/ecodiv/Trilium_scripts/main/weeklyplanner/planner.jsx"
     },
@@ -49,6 +51,7 @@
       "description": "Renders screenplay scripts written in Fountain directly inside TriliumNext. Supports scenes, action lines, dialogue, characters, and panel descriptions.",
       "version": "1.0.0",
       "author": "ricolandia",
+      "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit",
       "tags": ["writing", "screenplay", "comics", "render"],
      "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Writers-Tools/js-Fountain/js%20-%20Fountain%203.js"
     },
@@ -58,6 +61,7 @@
       "description": "Aggregates a subtree of notes into a single compiled document. Useful for book manuscripts, academic articles, and any long-form writing split across multiple notes.",
       "version": "1.0.0",
       "author": "ricolandia",
+      "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit",
       "tags": ["writing", "export", "longform"],
       "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Writers-Tools/js-grid/js%20-%20grade.js"
     },
@@ -67,6 +71,7 @@
       "description": "Inline AI chat widget powered by OpenRouter. Supports multiple models (GPT-4o, Claude, Mistral, etc.) with conversation history, configurable system prompt, and context from the current note.",
       "version": "1.0.0",
       "author": "ricolandia",
+      "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit",
       "tags": ["ai", "chat", "openrouter", "productivity"],
       "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/AI-Chat/AI-Chat/AI%20Code.js"
     },
@@ -76,6 +81,7 @@
       "description": "A monochromatic Pomodoro timer widget with per-note time tracking and automated report generation. Built with zero external dependencies.",
       "version": "1.0.0",
       "author": "ricolandia",
+      "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit",
       "tags": ["pomodoro", "timer"],
       "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Minimalist-Pomodoro/Pomodoro-mini/Pomodoro%20mini.js"
     },
@@ -94,6 +100,7 @@
       "description": "A compact right-pane panel showing word and character counts for the current note, alongside a daily progress bar.",
       "version": "1.0.0",
       "author": "ricolandia",
+      "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit",
       "tags": ["word", "counter"],
       "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Word-Counter/Word%20count.js"
     }
