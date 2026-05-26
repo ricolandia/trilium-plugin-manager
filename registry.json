@@ -33,6 +33,7 @@
       "description": "A lightweight template system for Trilium Canvas. Insert complete visual frameworks directly into your Excalidraw canvases with a single click.",
       "version": "1.0.0",
       "author": "ricolandia",
+      "homepage": "https://github.com/ecodiv/Trilium_scripts",
       "tags": ["canvas", "excalidraw", "templates", "visual"],
       "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Canvas-Template-Loader/Canvas-Templater/Canvas%20Templater.js"
     },
@@ -42,6 +43,7 @@
       "description": "A collection of Excalidraw templates for productivity, learning, and creativity. Ideal for use with the Canvas Template Loader.",
       "version": "1.0.0",
       "author": "ricolandia",
+      "homepage": "https://github.com/ecodiv/Trilium_scripts",
       "tags": ["excalidraw", "templates", "canvas"],
       "zipUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/raw/refs/heads/main/Canvas-Templates/Canvas-templates.zip"
     },
@@ -91,6 +93,7 @@
       "description": "Scans all notes in your TriliumNext database for broken relations, unused labels, rare attributes, and near-duplicate names. Preview and batch-delete them — deletions persist.",
       "version": "1.0.0",
       "author": "ricolandia",
+      "homepage": "https://github.com/ecodiv/Trilium_scripts",
       "tags": ["notes", "cleaner", "attribute"],
       "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Attribute-Garbage-Collector/attribute-gc.js"
     },
