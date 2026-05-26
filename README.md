@@ -151,3 +151,10 @@ On every load, the manager compares the `version` field in the registry against 
 ## License
 
 MIT
+
+---
+
+## Screenshots
+
+![screen capture](imagens/manager.webp)
+
