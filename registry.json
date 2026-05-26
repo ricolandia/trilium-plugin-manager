@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "name": "TriliumNext Plugins — Official Registry",
+    "author": "ricolandia",
+    "description": "Personal plugin registry for TriliumNext Plugin Manager.",
+    "homepage": "https://github.com/ricolandia/trilium-plugin-manager",
+    "updated": "2025-05-26"
+  },
+  "plugins": [
+    {
+      "id": "weekly-planner",
+      "name": "Weekly Planner",
+      "description": "Simple Weekly planning board with Monday–Sunday columns.",
+      "version": "1.0.0",
+      "author": "ecodiv",
+      "tags": ["productivity", "planning", "kanban"],
+      "sourceUrl": "https://raw.githubusercontent.com/ecodiv/Trilium_scripts/main/weeklyplanner/planner.jsx",
+      "zipUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/raw/refs/heads/main/Weekly-Planner/weekly-planner.zip"
+    },
+    {
+      "id": "canvas-note-tools",
+      "name": "Canvas Note Tools",
+      "description": "Enhances TriliumNext's Excalidraw integration: create child notes directly from shapes, assign relation types per arrow, and batch-save all links at once.",
+      "version": "1.0.0",
+      "author": "ricolandia",
+      "tags": ["canvas", "excalidraw", "relations", "visual"],
+      "zipUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Canvas-Note-Tools/Canvas-note-tools.zip"
+    },
+    {
+      "id": "fountain-renderer",
+      "name": "FountainRenderer",
+      "description": "Renders screenplay scripts written in Fountain directly inside TriliumNext. Supports scenes, action lines, dialogue, characters, and panel descriptions.",
+      "version": "1.0.0",
+      "author": "ricolandia",
+      "tags": ["writing", "screenplay", "comics", "render"],
+      "zipUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Writers-Tools/js-Fountain.zip"
+    },
+    {
+      "id": "longform-compiler",
+      "name": "Longform Compiler",
+      "description": "Aggregates a subtree of notes into a single compiled document. Useful for book manuscripts, academic articles, and any long-form writing split across multiple notes.",
+      "version": "1.0.0",
+      "author": "ricolandia",
+      "tags": ["writing", "export", "longform"],
+      "zipUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Writers-Tools/js-grid.zip"
+    },
+    {
+      "id": "ai-chat-openrouter",
+      "name": "AI Chat (OpenRouter)",
+      "description": "Inline AI chat widget powered by OpenRouter. Supports multiple models (GPT-4o, Claude, Mistral, etc.) with conversation history, configurable system prompt, and context from the current note.",
+      "version": "1.0.0",
+      "author": "ricolandia",
+      "tags": ["ai", "chat", "openrouter", "productivity"],
+      "zipUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/AI-Chat/AI-Chat.zip"
+    },
+    {
+      "id": "minimalist-pomodoro",
+      "name": "Minimalist Pomodoro and Time Tracker",
+      "description": "A monochromatic Pomodoro timer widget with per-note time tracking and automated report generation. Built with zero external dependencies.",
+      "version": "1.0.0",
+      "author": "ricolandia",
+      "tags": ["pomodoro", "timer"],
+      "zipUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Minimalist-Pomodoro/Pomodoro-mini.zip"
+    },
+    {
+      "id": "word-counter",
+      "name": "Word Counter",
+      "description": "A compact right-pane panel showing word and character counts for the current note, alongside a daily progress bar.",
+      "version": "1.0.0",
+      "author": "ricolandia",
+      "tags": ["word", "counter"],
+      "zipUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Word-Counter/Word-counter.zip"
+    }
+  ]
+}
+
