@@ -1,6 +1,9 @@
 # Experimental / wip
 Manager-v*.js
 
+# Discussion post (published separately)
+DISCUSSION_POST.md
+
 # System
 .DS_Store
 Thumbs.db
