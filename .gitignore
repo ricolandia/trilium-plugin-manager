@@ -6,4 +6,5 @@ DISCUSSION_POST.md
 
 # AI tooling config (local to each developer)
 .opencode/skills/
+.opencodeignore
 *.sync-conflict-*
