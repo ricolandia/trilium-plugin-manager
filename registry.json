@@ -115,9 +115,9 @@
       "description": "Track and manage knowledge gaps in your notes. Organize what you don't know yet.",
       "version": "0.6.0",
       "author": "ricolandia",
-      "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Knowledge-Debt",
+      "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Knowledge-Debt-Dashboard",
       "tags": ["notes", "knowledge"],
-      "manifestUrl": "https://raw.githubusercontent.com/ricolandia/TriliumNext-Toolkit/main/Knowledge-Debt/manifest.json"
+      "manifestUrl": "https://raw.githubusercontent.com/ricolandia/TriliumNext-Toolkit/main/Knowledge-Debt-Dashboard/manifest.json"
     },
     {
       "id": "word-counter",
