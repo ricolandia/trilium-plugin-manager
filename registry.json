@@ -105,7 +105,7 @@
       "author": "ricolandia",
       "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Shared-Notes",
       "tags": ["share", "comment"],
-      "zipUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Shared-Notes/Shared-notes.zip"
+      "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Shared-Notes/Shared-notes/shared-notes.jsx"
     },
     {
       "id": "word-counter",
