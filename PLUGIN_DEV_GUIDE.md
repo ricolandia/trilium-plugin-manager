@@ -275,6 +275,12 @@ Upload the manifest and all source files to a public folder. The `manifestUrl` i
 
 ---
 
+## Manifest Generator
+
+Use o **[Manifest Generator](./MANIFEST_GENERATOR.md)** para criar o `manifest.json` do seu plugin preenchendo um formulario simples. O prompt pode ser colado em um chat de IA (Claude, ChatGPT) ou usado como checklist manual.
+
+---
+
 ## Best practices
 
 1. **One file, one plugin** — keep the entire plugin in a single `.js` or `.jsx` file

@@ -195,6 +195,7 @@ On every load, the manager compares the `version` field in the registry against 
 | `trilium-plugin-manager-v4.html` | Legacy HTML version (kept for reference) |
 | `registry.json` | Example registry with official plugins |
 | `PLUGIN_DEV_GUIDE.md` | Guide for creating and publishing plugins |
+| `MANIFEST_GENERATOR.md` | Fill-in-the-blank prompt to generate manifest.json |
 
 ---
 
