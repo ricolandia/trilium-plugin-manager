@@ -4,19 +4,6 @@ Manager-v*.js
 # Discussion post (published separately)
 DISCUSSION_POST.md
 
-# System
-.DS_Store
-Thumbs.db
-*.swp
-*.swo
-*~
-
-# Editor
-.idea/
-.vscode/
-*.sublime-*
-
-# OS
-.DS_Store
-Thumbs.db
+# AI tooling config (local to each developer)
+.opencode/skills/
 *.sync-conflict-*
