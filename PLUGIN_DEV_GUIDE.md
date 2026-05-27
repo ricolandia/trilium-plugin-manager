@@ -200,10 +200,78 @@ Users add your registry URL as `#registryUrl` on their `plugin-registry` note.
 | `description` | | Short text shown below the name. |
 | `tags` | | Array of tag strings shown as pills. |
 | `homepage` | | URL to docs or repository — shows a "How to" button on the card |
-| `sourceUrl` | | **Recommended.** Raw URL to the `.js`/`.jsx` source. |
+| `sourceUrl` | | Raw URL to the `.js`/`.jsx` source. |
+| `manifestUrl` | | Raw URL to a `manifest.json` for multi-note plugins. |
 | `zipUrl` | | Legacy fallback. URL to a Trilium export ZIP. |
 
-At least one of `sourceUrl` or `zipUrl` is required. `sourceUrl` is preferred — it installs instantly without any ETAPI token.
+At least one of `sourceUrl`, `manifestUrl` or `zipUrl` is required.
+
+---
+
+## Multi-note plugins with `manifestUrl`
+
+For plugins that need more than one note (e.g., a render note + widget + config), use a `manifest.json` file.
+
+### File structure
+
+```
+my-plugin/
+├── manifest.json
+├── widget.js
+└── handler.js
+```
+
+### Manifest format
+
+```json
+{
+  "notes": [
+    {
+      "title": "My Plugin",
+      "type": "text",
+      "content": "Open this note to use My Plugin."
+    },
+    {
+      "title": "My Plugin Widget",
+      "type": "code",
+      "mime": "application/javascript;env=frontend",
+      "sourceUrl": "widget.js"
+    },
+    {
+      "title": "My Plugin Handler",
+      "type": "code",
+      "mime": "application/javascript;env=backend",
+      "sourceUrl": "handler.js"
+    }
+  ],
+  "relations": [
+    { "type": "renderNote", "from": "My Plugin", "to": "My Plugin Widget" }
+  ],
+  "labels": [
+    { "note": "My Plugin Widget", "name": "widget", "value": "" },
+    { "note": "My Plugin Widget", "name": "readOnly", "value": "" },
+    { "note": "My Plugin Handler", "name": "customRequestHandler", "value": "my-plugin-endpoint" }
+  ]
+}
+```
+
+### Note definition
+
+| Field | Required | Description |
+|-------|:--------:|-------------|
+| `title` | ✅ | Note title |
+| `type` | | Note type: `text`, `code` (default: `text`) |
+| `mime` | | MIME type (required if `type: "code"`) |
+| `content` | | Static text content |
+| `sourceUrl` | | URL to download source (relative to the manifest) |
+
+### Hosting
+
+Upload the manifest and all source files to a public folder. The `manifestUrl` in the registry is the raw URL to `manifest.json`. Source URLs are resolved relative to the manifest:
+
+| Manifest URL | Source URL | Resolves to |
+|---|---|---|
+| `https://raw.githubusercontent.com/user/repo/main/plugin/manifest.json` | `widget.js` | `https://raw.githubusercontent.com/user/repo/main/plugin/widget.js` |
 
 ---
 
@@ -241,4 +309,6 @@ For JS plugins, use `$container` to build your UI directly.
 
 ### Can I have multiple files?
 
-The Plugin Manager expects a single source file. You can use `api.createNewNote()` at runtime to create helper notes, or concatenate your files into one before publishing.
+Yes. Use the `manifestUrl` format — create a `manifest.json` that lists each note with its own `sourceUrl`. The Plugin Manager creates all notes and applies labels and relations automatically.
+
+If you need dynamic notes (created at runtime), use `api.createNewNote()` in your plugin's init code.

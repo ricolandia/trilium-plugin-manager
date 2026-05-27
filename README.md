@@ -103,22 +103,79 @@ Create a public [GitHub Gist](https://gist.github.com) with a `registry.json` fi
 | `description` | | Short card description |
 | `tags` | | Array of tag strings |
 | `homepage` | | URL to the plugin's docs or repository — shows a "How to" button on the card |
-| `sourceUrl` | | **Recommended.** Raw URL to the `.js`/`.jsx` source file |
+| `sourceUrl` | | Raw URL to the `.js`/`.jsx` source file |
+| `manifestUrl` | | Raw URL to a `manifest.json` for multi-note plugins (see below) |
 | `zipUrl` | | Legacy URL to a Trilium export ZIP |
 
-At least one of `sourceUrl` or `zipUrl` must be provided. `sourceUrl` is preferred — it works without an ETAPI token.
+At least one of `sourceUrl`, `manifestUrl` or `zipUrl` must be provided.
 
 ---
 
-## Architecture
+## Plugin formats
 
-### `sourceUrl` install flow
+### Single-file (`sourceUrl`)
+
+A single `.js` or `.jsx` file. The Plugin Manager downloads it and creates one code note.
+
+```
+sourceUrl → download → create code note → done
+```
+
+### Multi-note (`manifestUrl`)
+
+For plugins that need multiple notes (widget + handler + config + render note). The `manifestUrl` points to a JSON file describing the notes to create:
+
+```json
+{
+  "notes": [
+    {
+      "title": "My Plugin",
+      "type": "text",
+      "content": "Open this note to use the plugin."
+    },
+    {
+      "title": "My Plugin Code",
+      "type": "code",
+      "mime": "application/javascript;env=frontend",
+      "sourceUrl": "code.js"
+    }
+  ],
+  "relations": [
+    { "type": "renderNote", "from": "My Plugin", "to": "My Plugin Code" }
+  ],
+  "labels": [
+    { "note": "My Plugin Code", "name": "readOnly", "value": "" }
+  ]
+}
+```
+
+Each note with `sourceUrl` fetches the source file (relative to the manifest URL). Labels and relations from the manifest are applied automatically.
+
+```
+manifestUrl → download manifest → for each note: create + apply labels → create relations → done
+```
+
+### ZIP (`zipUrl`, legacy)
+
+Downloads the ZIP to the user's browser for manual import via **Options → Import**. Requires an ETAPI token.
+
+---
+
+## Install flows
+
+### `manifestUrl` install
+1. Downloads the manifest JSON
+2. Creates all notes described in the manifest
+3. Applies labels and `~renderNote` relations
+4. ✅ No token, no ZIP, no deadlock
+
+### `sourceUrl` install
 1. Backend downloads the source file via HTTPS
 2. Creates a `code` note with MIME `application/javascript;env=frontend`
 3. Sets `#pluginId`, `#pluginVersion`, `#pluginName` labels
-4. ✅ Done — no HTTP calls, no ZIP, no SQLite deadlock
+4. ✅ Done
 
-### `zipUrl` install flow (legacy)
+### `zipUrl` install (legacy)
 1. Downloads the ZIP to the user's browser
 2. User imports manually via **Options → Import**
 
