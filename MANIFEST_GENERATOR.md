@@ -1,141 +1,141 @@
-# 📝 Gerador de Manifest para Plugins TriliumNext
+# 📝 Manifest Generator for TriliumNext Plugins
 
-Preencha os dados abaixo e cole em um chat de IA (ou use como checklist manual) para gerar o `manifest.json` do seu plugin.
+Fill out the sections below and paste into an AI chat (Claude, ChatGPT, etc.) or use as a manual checklist to generate your plugin's `manifest.json`.
 
 ---
 
-## Instruções
+## How to use
 
-1. Preencha todas as seções marcadas com `[PREENCHER]`
-2. Cole o prompt completo em um chat de IA (Claude, ChatGPT, etc.)
-3. O AI retornará o `manifest.json` pronto
-4. Salve o arquivo na pasta do seu plugin no Toolkit
+1. Fill every `[FILL]` section with your plugin's data
+2. Paste the complete prompt into an AI chat
+3. The AI will return a ready-to-use `manifest.json`
+4. Save it in your plugin's folder inside the Toolkit
 
 ---
 
 ## Prompt
 
 ```
-Crie um arquivo manifest.json para um plugin TriliumNext com as seguintes caracteristicas:
+Create a manifest.json file for a TriliumNext plugin with the following characteristics:
 
-## Dados do Plugin (registry)
-- ID: [PREENCHER — ex: my-plugin]
-- Nome: [PREENCHER — ex: My Plugin]
-- Versao: [PREENCHER — ex: 0.1.0]
-- Autor: [PREENCHER — ex: Seu Nome]
-- Descricao: [PREENCHER — ex: Faz algo incrivel]
-- Homepage (URL do repo/docs): [PREENCHER — ex: https://github.com/seuuser/seurepo]
-- Tags: [PREENCHER — ex: ["tag1", "tag2"]]
+## Plugin Data (registry)
+- ID: [FILL — e.g. my-plugin]
+- Name: [FILL — e.g. My Plugin]
+- Version: [FILL — e.g. 0.1.0]
+- Author: [FILL — e.g. Your Name]
+- Description: [FILL — e.g. Does something amazing]
+- Homepage (repo/docs URL): [FILL — e.g. https://github.com/youruser/yourrepo]
+- Tags: [FILL — e.g. ["tag1", "tag2"]]
 
-## URL base dos sources (raw.githubusercontent.com)
-[Copie e cole a URL base onde os arquivos .js/.jsx estarao hospedados]
-Ex: https://raw.githubusercontent.com/seuuser/seurepo/main/Meu-Plugin/
+## Base URL for source files (raw.githubusercontent.com)
+[Paste the base URL where .js/.jsx files will be hosted]
+Example: https://raw.githubusercontent.com/youruser/yourrepo/main/My-Plugin/
 
-## Notas do Plugin (preencha uma tabela para cada nota)
+## Plugin Notes (fill one table per note)
 
-### Nota 1 — Render Note (principal)
-- Titulo: [PREENCHER — ex: My Plugin]
-- Tipo: text
-- Conteudo: [PREENCHER — ex: "Abra esta nota para usar o plugin."]
-- Labels: [PREENCHER — deixar vazio se nao tiver]
-- Relation ~renderNote aponta para qual nota?: [PREENCHER — ex: My Plugin Code]
+### Note 1 — Render Note (main)
+- Title: [FILL — e.g. My Plugin]
+- Type: text
+- Content: [FILL — e.g. "Open this note to use the plugin."]
+- Labels: [FILL — leave empty if none]
+- Relation ~renderNote points to which note?: [FILL — e.g. My Plugin Code]
 
-### Nota 2 — Codigo (JS Frontend)
-- Titulo: [PREENCHER — ex: My Plugin Code]
-- Tipo: code
+### Note 2 — Code (JS Frontend)
+- Title: [FILL — e.g. My Plugin Code]
+- Type: code
 - MIME: application/javascript;env=frontend
-- sourceUrl (nome do arquivo): [PREENCHER — ex: plugin.js]
-- Labels: [PREENCHER — ex: readOnly, widget, etc]
+- sourceUrl (filename): [FILL — e.g. plugin.js]
+- Labels: [FILL — e.g. readOnly, widget, etc]
 
-### Nota 3 — Codigo (JS Backend) — se houver
-- Titulo: [PREENCHER — ex: My Plugin Handler]
-- Tipo: code
+### Note 3 — Code (JS Backend) — if applicable
+- Title: [FILL — e.g. My Plugin Handler]
+- Type: code
 - MIME: application/javascript;env=backend
-- sourceUrl (nome do arquivo): [PREENCHER — ex: handler.js]
-- Labels: [PREENCHER — ex: customRequestHandler=my-endpoint]
+- sourceUrl (filename): [FILL — e.g. handler.js]
+- Labels: [FILL — e.g. customRequestHandler=my-endpoint]
 
-### Nota 4 — Config/Data — se houver
-- Titulo: [PREENCHER — ex: My Plugin Config]
-- Tipo: text ou code
-- MIME: [PREENCHER — ex: application/json]
-- Conteudo: [PREENCHER — ex: "{}" se for JSON, ou texto de instrucoes]
-- Labels: [PREENCHER — ex: myPluginConfig]
+### Note 4 — Config/Data — if applicable
+- Title: [FILL — e.g. My Plugin Config]
+- Type: text or code
+- MIME: [FILL — e.g. application/json]
+- Content: [FILL — e.g. "{}" for JSON, or instructions text]
+- Labels: [FILL — e.g. myPluginConfig]
 
-[Repita para quantas notas o plugin tiver]
+[Repeat for as many notes as your plugin needs]
 
-## Regras importantes
-1. sourceUrl dentro do manifest deve ser URL ABSOLUTA (https://raw.githubusercontent.com/...) ou RELATIVA ao manifest
-2. Se o arquivo tiver espacos no nome, use %20 (ex: AI%20Code.js)
-3. Todo label com valor vazio fica como string vazia ""
-4. Relations sao opcionais — inclua apenas se o plugin usar ~renderNote
-5. A primeira nota do manifest recebe automaticamente as labels pluginId, pluginVersion, pluginName
+## Important rules
+1. sourceUrl inside the manifest must be an ABSOLUTE URL (https://raw.githubusercontent.com/...) or RELATIVE to the manifest
+2. If the filename has spaces, use %20 (e.g. AI%20Code.js)
+3. Labels with empty value should be an empty string ""
+4. Relations are optional — include only if your plugin uses ~renderNote
+5. The first note in the manifest automatically gets pluginId, pluginVersion, pluginName labels
 
-Gere apenas o JSON do manifest, sem explicacoes.
+Output only the JSON manifest, no explanations.
 ```
 
 ---
 
-## Exemplo preenchido
+## Filled example
 
-Use como referencia:
+Use this as reference:
 
 ```
-Crie um arquivo manifest.json para um plugin TriliumNext com as seguintes caracteristicas:
+Create a manifest.json file for a TriliumNext plugin with the following characteristics:
 
-## Dados do Plugin (registry)
+## Plugin Data (registry)
 - ID: shared-notes
-- Nome: Shared Notes
-- Versao: 0.6.0
-- Autor: ricolandia
-- Descricao: Compartilhe notas entre instancias do TriliumNext
+- Name: Shared Notes
+- Version: 0.6.0
+- Author: ricolandia
+- Description: Share notes between TriliumNext instances via invite strings
 - Homepage: https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Shared-Notes
 - Tags: ["share", "comment"]
 
-## URL base dos sources
+## Base URL for source files
 https://raw.githubusercontent.com/ricolandia/TriliumNext-Toolkit/main/Shared-Notes/
 
-## Notas do Plugin
+## Plugin Notes
 
-### Nota 1 — Render Note
-- Titulo: Shared Notes
-- Tipo: text
-- Conteudo: "Compartilhe notas entre instancias. Abra esta nota para usar."
-- Labels: nenhum
+### Note 1 — Render Note
+- Title: Shared Notes
+- Type: text
+- Content: "Share notes between TriliumNext instances. Open this note to use it."
+- Labels: none
 - Relation ~renderNote: shared-notes-widget
 
-### Nota 2 — Widget (JS Frontend)
-- Titulo: shared-notes-widget
-- Tipo: code
+### Note 2 — Widget (JS Frontend)
+- Title: shared-notes-widget
+- Type: code
 - MIME: application/javascript;env=frontend
 - sourceUrl: shared-notes-widget.js
 - Labels: widget, originalFileName=shared-notes-widget.js, readOnly
 
-### Nota 3 — Handler (JS Backend)
-- Titulo: shared-notes-handler
-- Tipo: code
+### Note 3 — Handler (JS Backend)
+- Title: shared-notes-handler
+- Type: code
 - MIME: application/javascript;env=backend
 - sourceUrl: shared-notes-handler.js
 - Labels: customRequestHandler=shared-notes-reply, originalFileName=shared-notes-handler.js, readOnly
 
-### Nota 4 — Config
-- Titulo: Shared Notes Config
-- Tipo: text
-- Conteudo: "Configure #myName e #myEndpoint na label desta nota."
+### Note 4 — Config
+- Title: Shared Notes Config
+- Type: text
+- Content: "Configure #myName and #myEndpoint on this note's labels."
 - Labels: sharedNotesConfig, myName=yourname, myEndpoint=http://yoururl/
 ```
 
 ---
 
-## Validacao
+## Validation checklist
 
-Depois de gerar o manifest, verifique:
+After generating the manifest, verify:
 
-- [ ] JSON valido (use jsonlint.com ou similar)
-- [ ] `sourceUrl` aponta para raw.githubusercontent.com (nao github.com/blob)
-- [ ] Arquivos de source existem no caminho indicado
-- [ ] Nomes com espaco usam %20 (ex: `AI%20Code.js`)
-- [ ] Labels com valor usam ` nome=valor `
-- [ ] Labels sem valor usam `"nome": ""`
-- [ ] `~renderNote` de ORIGEM existe nas notes do manifest
-- [ ] `~renderNote` de DESTINO existe nas notes do manifest
-- [ ] Primeira nota nao precisa de pluginId/pluginVersion/pluginName (sao automaticos)
+- [ ] Valid JSON (use jsonlint.com or similar)
+- [ ] `sourceUrl` points to raw.githubusercontent.com (not github.com/blob)
+- [ ] Source files exist at the specified paths
+- [ ] Filenames with spaces use %20 (e.g. `AI%20Code.js`)
+- [ ] Labels with values use `"name": "value"`
+- [ ] Labels without values use `"name": ""`
+- [ ] `~renderNote` FROM exists in the notes array
+- [ ] `~renderNote` TO exists in the notes array
+- [ ] First note does NOT need pluginId/pluginVersion/pluginName (these are automatic)
