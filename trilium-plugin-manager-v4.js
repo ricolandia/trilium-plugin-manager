@@ -387,8 +387,8 @@ const CATEGORIES = [
   { id: 'all',      label: 'Todos' },
   { id: 'widget',   label: 'Widget',   match: ['widget', 'pomodoro', 'timer', 'word', 'counter', 'ai', 'chat', 'openrouter'] },
   { id: 'canvas',   label: 'Canvas',   match: ['canvas', 'excalidraw', 'visual', 'templates'] },
-  { id: 'ui',       label: 'UI',       match: ['render', 'kanban', 'planning', 'board', 'productivity'] },
-  { id: 'writing',  label: 'Escrita',  match: ['writing', 'screenplay', 'comics', 'export', 'longform'] },
+  { id: 'writing',  label: 'Escrita',  match: ['writing', 'screenplay', 'comics', 'render', 'export', 'longform'] },
+  { id: 'ui',       label: 'UI',       match: ['kanban', 'planning', 'board', 'productivity'] },
   { id: 'tools',    label: 'Ferramentas', match: ['notes', 'cleaner', 'attribute', 'share', 'comment', 'network'] },
 ];
 
