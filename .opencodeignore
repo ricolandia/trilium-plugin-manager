@@ -1,9 +1,0 @@
-*.html
-*.txt
-imagens/
-*.webp
-*.png
-*.jpg
-.DS_Store
-.git/
-node_modules/
