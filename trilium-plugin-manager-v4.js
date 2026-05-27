@@ -581,7 +581,7 @@ function cardHTML(p) {
   const installedVer = installedMap.get(p.id);
   const isInstalled  = installedVer !== undefined;
   const hasUpdate    = isInstalled && semverGt(p.version, installedVer);
-  const hasSourceUrl = !!p.sourceUrl;
+  const hasSourceUrl = !!p.sourceUrl || !!p.manifestUrl;
   const btnLabel     = hasSourceUrl ? 'Instalar' : 'Baixar ZIP';
   const btnClass     = hasSourceUrl ? 'btn-install' : 'btn-download';
 
@@ -631,16 +631,115 @@ function cardHTML(p) {
     </div>`;
 }
 
+// ── HELPER: httpGet (reusable) ──────────────────────────────────
+// Nota: esta função é definida dentro dos callbacks backend,
+// mas precisamos dela em múltiplos lugares. Vamos manter inline.
+
 // ── INSTALL ──────────────────────────────────────────────────────
 async function installPlugin(p, btn) {
   if (!btn) btn = $root.find(`[data-plugin-id="${p.id}"]`).first();
   if (btn.length) { btn.prop('disabled', true); btn.html('<span class="spinner"></span>Instalando...'); }
 
   try {
-    if (p.sourceUrl) {
+    if (p.manifestUrl) {
+      // ── Fluxo manifestUrl: baixa manifest + cria múltiplas notas ──
+      btn.html('<span class="spinner"></span>Instalando...');
+      const result = await api.runAsyncOnBackendWithManualTransactionHandling(
+        async (manifestUrl, parentNoteId, pluginId, pluginVersion, pluginName) => {
+          function httpGet(url, depth) {
+            if ((depth || 0) > 5) return Promise.reject(new Error('Muitos redirects'));
+            return new Promise((resolve, reject) => {
+              const mod = url.startsWith('https') ? require('https') : require('http');
+              mod.get(url, (res) => {
+                if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+                  res.resume();
+                  return httpGet(res.headers.location, (depth || 0) + 1).then(resolve, reject);
+                }
+                if (res.statusCode >= 400) { res.resume(); return reject(new Error(`HTTP ${res.statusCode}`)); }
+                const chunks = [];
+                res.on('data', c => chunks.push(c));
+                res.on('end', () => resolve(Buffer.concat(chunks)));
+                res.on('error', reject);
+              }).on('error', reject)
+                .setTimeout(30000, function() { this.destroy(); reject(new Error('Timeout (30s)')); });
+            });
+          }
+
+          // 1. Baixa o manifest
+          const manifestRaw = await httpGet(manifestUrl);
+          let manifest;
+          try { manifest = JSON.parse(manifestRaw.toString('utf-8')); }
+          catch (e) { throw new Error('Manifest inválido: ' + e.message); }
+
+          if (!manifest.notes || !manifest.notes.length) throw new Error('Manifest sem notas');
+
+          const baseUrl = manifestUrl.substring(0, manifestUrl.lastIndexOf('/') + 1);
+          const noteMap = {};
+
+          // 2. Cria cada nota do manifest
+          for (const def of manifest.notes) {
+            let content = def.content || '';
+            if (def.sourceUrl) {
+              const srcBuf = await httpGet(baseUrl + def.sourceUrl);
+              content = srcBuf.toString('utf-8');
+            }
+            const created = await api.createNewNote({
+              parentNoteId,
+              title: def.title,
+              content,
+              type: def.type || 'text',
+              mime: def.mime || undefined
+            });
+            noteMap[def.title] = created.note.noteId;
+          }
+
+          // 3. Aplica labels do manifest
+          if (manifest.labels) {
+            for (const lbl of manifest.labels) {
+              const noteId = noteMap[lbl.note];
+              if (!noteId) continue;
+              const note = api.getNote(noteId);
+              if (note) {
+                await note.setAttribute('label', lbl.name, lbl.value || '');
+              }
+            }
+          }
+
+          // 4. Cria relations do manifest
+          if (manifest.relations) {
+            for (const rel of manifest.relations) {
+              const fromId = noteMap[rel.from];
+              const toId = noteMap[rel.to];
+              if (fromId && toId) {
+                const fromNote = api.getNote(fromId);
+                if (fromNote) {
+                  fromNote.setRelation(rel.type, toId);
+                }
+              }
+            }
+          }
+
+          // 5. Marca a primeira nota com os metadados do plugin
+          const firstTitle = manifest.notes[0].title;
+          const firstNote = api.getNote(noteMap[firstTitle]);
+          if (firstNote) {
+            await firstNote.setAttribute('label', 'pluginId',      pluginId);
+            await firstNote.setAttribute('label', 'pluginVersion', pluginVersion);
+            await firstNote.setAttribute('label', 'pluginName',    pluginName);
+          }
+
+          return { noteId: noteMap[firstTitle] };
+        },
+        [p.manifestUrl, CFG.installedNoteId, p.id, p.version, p.name]
+      );
+
+      installedMap.set(p.id, p.version);
+      showToast(`✓ ${p.name} v${p.version} instalado!`, 'ok');
+
+    } else if (p.sourceUrl) {
       // ── Fluxo sourceUrl: baixa o .js/.jsx e cria nota code diretamente ──
       btn.html('<span class="spinner"></span>Baixando...');
-      const noteId = await api.runAsyncOnBackendWithManualTransactionHandling(
+      const result = await api.runAsyncOnBackendWithManualTransactionHandling(
         async (sourceUrl, parentNoteId, pluginId, pluginVersion, pluginName) => {
           function httpGet(url, depth) {
             if ((depth || 0) > 5) return Promise.reject(new Error('Muitos redirects'));
@@ -664,40 +763,24 @@ async function installPlugin(p, btn) {
           if (!buf.length) throw new Error('Source vazio: ' + sourceUrl);
           const source = buf.toString('utf-8');
 
-          const mime = sourceUrl.endsWith('.jsx')
-            ? 'application/javascript;env=frontend'
-            : 'application/javascript;env=frontend';
-
           const created = await api.createNewNote({
             parentNoteId,
             title: pluginName,
             content: source,
             type: 'code',
-            mime
+            mime: 'application/javascript;env=frontend'
           });
           const note = created.note;
           await note.setAttribute('label', 'pluginId',      pluginId);
           await note.setAttribute('label', 'pluginVersion', pluginVersion);
           await note.setAttribute('label', 'pluginName',    pluginName);
-          return note.noteId;
+          return { noteId: note.noteId };
         },
         [p.sourceUrl, CFG.installedNoteId, p.id, p.version, p.name]
       );
 
       installedMap.set(p.id, p.version);
       showToast(`✓ ${p.name} v${p.version} instalado!`, 'ok');
-
-      const card = $root.find('#card-' + p.id);
-      if (card.length) {
-        card.attr('class', 'card is-installed');
-        card.find('.card-footer').html(
-          `<span class="badge-ok">✓ v${escHtml(p.version)}</span>
-           <div style="display:flex;gap:6px">
-             <button class="btn btn-reinstall" data-plugin-id="${escHtml(p.id)}">↺</button>
-             <button class="btn btn-uninstall" data-plugin-id="${escHtml(p.id)}">✕</button>
-           </div>`
-        );
-      }
 
     } else if (p.zipUrl) {
       // ── Fluxo zipUrl: download do ZIP para o usuário instalar manualmente ──
@@ -709,9 +792,23 @@ async function installPlugin(p, btn) {
       a.click();
       showToast(`📥 ${p.name} — ZIP baixado. Importe manualmente em Options > Import`, 'ok');
       if (btn.length) { btn.prop('disabled', false); btn.text('Baixar'); }
+      return;
 
     } else {
-      throw new Error('Plugin sem sourceUrl nem zipUrl');
+      throw new Error('Plugin sem manifestUrl, sourceUrl ou zipUrl');
+    }
+
+    // Atualiza o card para estado "instalado"
+    const card = $root.find('#card-' + p.id);
+    if (card.length) {
+      card.attr('class', 'card is-installed');
+      card.find('.card-footer').html(
+        `<span class="badge-ok">✓ v${escHtml(p.version)}</span>
+         <div style="display:flex;gap:6px">
+           <button class="btn btn-reinstall" data-plugin-id="${escHtml(p.id)}">↺</button>
+           <button class="btn btn-uninstall" data-plugin-id="${escHtml(p.id)}">✕</button>
+         </div>`
+      );
     }
 
   } catch (err) {
@@ -746,7 +843,7 @@ async function uninstallPlugin(p, btn) {
     // Volta o card ao estado "não instalado"
     const card = $root.find('#card-' + p.id);
     if (card.length) {
-      const hasSrc = !!p.sourceUrl;
+      const hasSrc = !!p.sourceUrl || !!p.manifestUrl;
       card.attr('class', 'card');
       card.find('.card-footer').html(
         `<span></span>

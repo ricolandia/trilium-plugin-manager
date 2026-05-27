@@ -75,7 +75,8 @@
       "author": "ricolandia",
       "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/AI-Chat",
       "tags": ["ai", "chat", "openrouter", "productivity"],
-      "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/AI-Chat/AI-Chat/AI%20Code.js"
+      "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/AI-Chat/AI-Chat/AI%20Code.js",
+      "manifestUrl": "https://raw.githubusercontent.com/ricolandia/TriliumNext-Toolkit/main/AI-Chat/manifest.json"
     },
     {
       "id": "minimalist-pomodoro",
@@ -95,7 +96,8 @@
       "author": "ricolandia",
       "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Attribute-Garbage-Collector",
       "tags": ["notes", "cleaner", "attribute"],
-      "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Attribute-Garbage-Collector/attribute-gc.js"
+      "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Attribute-Garbage-Collector/attribute-gc.js",
+      "manifestUrl": "https://raw.githubusercontent.com/ricolandia/TriliumNext-Toolkit/main/Attribute-Garbage-Collector/manifest.json"
     },
     {
       "id": "shared-notes",
@@ -105,7 +107,17 @@
       "author": "ricolandia",
       "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Shared-Notes",
       "tags": ["share", "comment"],
-      "zipUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/raw/refs/heads/main/Shared-Notes/Shared-notes.zip"
+      "manifestUrl": "https://raw.githubusercontent.com/ricolandia/TriliumNext-Toolkit/main/Shared-Notes/manifest.json"
+    },
+    {
+      "id": "knowledge-debt",
+      "name": "Knowledge Debt",
+      "description": "Track and manage knowledge gaps in your notes. Organize what you don't know yet.",
+      "version": "0.6.0",
+      "author": "ricolandia",
+      "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Knowledge-Debt",
+      "tags": ["notes", "knowledge"],
+      "manifestUrl": "https://raw.githubusercontent.com/ricolandia/TriliumNext-Toolkit/main/Knowledge-Debt/manifest.json"
     },
     {
       "id": "word-counter",
