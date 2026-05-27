@@ -158,4 +158,7 @@ MIT
 ## Screenshots
 
 ![screen capture](imagens/manager.webp)
+![screen capture](imagens/manager-2-.webp)
+
+
 
