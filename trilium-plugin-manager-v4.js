@@ -96,6 +96,25 @@ $root.html(`
   }
 
   /* ── Grid de cards ── */
+  .cat-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .cat-pill {
+    padding: 4px 12px;
+    border-radius: 99px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .cat-pill:hover { border-color: var(--accent); color: var(--text); }
+  .cat-pill.active { border-color: var(--accent); background: var(--accent); color: #16161e; font-weight: 600; }
+
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -359,8 +378,19 @@ $root.html(`
 // ════════════════════════════════════════════════════════════════
 
 let CFG = {};
-let installedMap = new Map(); // pluginId → versão instalada
-let pluginsMap = {};          // pluginId → objeto do plugin (para event delegation)
+let installedMap = new Map();
+let pluginsMap = {};
+let activeCategory = 'all';
+let allPlugins = [];
+
+const CATEGORIES = [
+  { id: 'all',      label: 'Todos' },
+  { id: 'widget',   label: 'Widget',   match: ['widget', 'pomodoro', 'timer', 'word', 'counter', 'ai', 'chat', 'openrouter'] },
+  { id: 'canvas',   label: 'Canvas',   match: ['canvas', 'excalidraw', 'visual', 'templates'] },
+  { id: 'ui',       label: 'UI',       match: ['render', 'kanban', 'planning', 'board', 'productivity'] },
+  { id: 'writing',  label: 'Escrita',  match: ['writing', 'screenplay', 'comics', 'export', 'longform'] },
+  { id: 'tools',    label: 'Ferramentas', match: ['notes', 'cleaner', 'attribute', 'share', 'comment', 'network'] },
+];
 
 // ── INIT ─────────────────────────────────────────────────────────
 async function init() {
@@ -458,6 +488,9 @@ async function init() {
     );
 
     setSourcePill(data.source, data.registryUrl, data.fetchedAt, data.fetchError);
+    allPlugins = plugins;
+    activeCategory = 'all';
+    renderCategoryBar();
     renderPlugins(plugins);
 
   } catch (err) {
@@ -499,18 +532,49 @@ function shortenUrl(url) {
 }
 
 // ── RENDER ───────────────────────────────────────────────────────
+function getPluginCategory(p) {
+  const tags = (p.tags || []).map(t => t.toLowerCase());
+  for (const cat of CATEGORIES) {
+    if (cat.id === 'all') continue;
+    if (tags.some(t => cat.match.includes(t))) return cat.id;
+  }
+  return 'other';
+}
+
+function renderCategoryBar() {
+  if (!allPlugins.length) { $root.find('#cat-bar').remove(); return; }
+  let html = '<div id="cat-bar" class="cat-bar">';
+  for (const cat of CATEGORIES) {
+    const count = cat.id === 'all'
+      ? allPlugins.length
+      : allPlugins.filter(p => getPluginCategory(p) === cat.id).length;
+    if (count === 0 && cat.id !== 'all') continue;
+    const active = cat.id === activeCategory ? ' active' : '';
+    html += `<button class="cat-pill${active}" data-cat="${cat.id}">${cat.label} (${count})</button>`;
+  }
+  html += '</div>';
+  const existing = $root.find('#cat-bar');
+  if (existing.length) existing.replaceWith(html); else $root.find('#source-bar').after(html);
+}
+
+function filterByCategory(plugins) {
+  if (activeCategory === 'all') return plugins;
+  return plugins.filter(p => getPluginCategory(p) === activeCategory);
+}
+
 function renderPlugins(plugins) {
   pluginsMap = {};
   for (const p of plugins) pluginsMap[p.id] = p;
-  if (!plugins.length) {
+  const filtered = filterByCategory(plugins);
+  if (!filtered.length) {
     setContent(`<div class="state-center">
       <div class="icon">📭</div>
-      <p>Nenhum plugin no registry.<br>
-      Edite a nota com <code>#pluginRegistry</code> para adicionar plugins.</p>
+      <p>Nenhum plugin nesta categoria.<br>
+      ${activeCategory !== 'all' ? 'Tente outra categoria.' : 'Edite a nota <code>#pluginRegistry</code> para adicionar plugins.'}</p>
     </div>`);
     return;
   }
-  setContent('<div class="grid">' + plugins.map(p => cardHTML(p)).join('') + '</div>');
+  setContent('<div class="grid">' + filtered.map(p => cardHTML(p)).join('') + '</div>');
 }
 
 function cardHTML(p) {
@@ -749,6 +813,12 @@ $root.on('click', '.btn-howto', function(e) {
   e.preventDefault();
   const p = pluginsMap[$(this).data('plugin-id')];
   if (p && p.homepage) window.open(p.homepage, '_blank', 'noopener');
+});
+
+$root.on('click', '.cat-pill', function(e) {
+  activeCategory = $(this).data('cat');
+  renderCategoryBar();
+  renderPlugins(allPlugins);
 });
 
 // ── START ─────────────────────────────────────────────────────────
