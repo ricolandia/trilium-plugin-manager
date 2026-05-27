@@ -19,3 +19,4 @@ Thumbs.db
 # OS
 .DS_Store
 Thumbs.db
+*.sync-conflict-*
