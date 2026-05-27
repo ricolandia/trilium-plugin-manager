@@ -25,7 +25,7 @@
       "author": "ricolandia",
       "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Canvas-Note-Tools",
       "tags": ["canvas", "excalidraw", "relations", "visual"],
-      "sourceUrl": "https://raw.githubusercontent.com/ecodiv/Trilium_scripts/main/weeklyplanner/planner.jsx"
+      "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Canvas-Note-Tools/Canvas-note-tools/Canvas%20tools%20v5.js"
     },
       {
       "id": "canvas-templater",
@@ -105,7 +105,7 @@
       "author": "ricolandia",
       "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Shared-Notes",
       "tags": ["share", "comment"],
-      "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Shared-Notes/Shared-notes/shared-notes.jsx"
+      "zipUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/raw/refs/heads/main/Shared-Notes/Shared-notes.zip"
     },
     {
       "id": "word-counter",
