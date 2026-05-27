@@ -100,12 +100,11 @@
     {
       "id": "shared-notes",
       "name": "Shared Notes",
-      "description": "Share notes between TriliumNext instances via invite strings. Auto-generates Widget + Handler + Config notes.",
-      "version": "2.0.0",
+      "description": "Share notes between TriliumNext instances via invite strings.",
+      "version": "1.0.0",
       "author": "ricolandia",
-      "homepage": "https://github.com/ricolandia/trilium-plugin-manager",
-      "tags": ["share", "comment", "network"],
-      "sourceUrl": "https://raw.githubusercontent.com/ricolandia/trilium-plugin-manager/main/shared-notes.jsx",
+      "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Shared-Notes",
+      "tags": ["share", "comment"],
       "zipUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Shared-Notes/Shared-notes.zip"
     },
     {
