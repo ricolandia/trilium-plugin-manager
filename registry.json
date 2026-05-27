@@ -18,6 +18,16 @@
       "sourceUrl": "https://raw.githubusercontent.com/ecodiv/Trilium_scripts/main/weeklyplanner/planner.jsx"
       },
     {
+      "id": "weekly-planner-editor",
+      "name": "Weekly Planner (Editor)",
+      "description": "Weekly planning board with backlog and day columns. Original version by ricolandia.",
+      "version": "0.6.0",
+      "author": "ricolandia",
+      "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Weekly-Planner",
+      "tags": ["productivity", "planning", "kanban"],
+      "manifestUrl": "https://raw.githubusercontent.com/ricolandia/TriliumNext-Toolkit/main/Weekly-Planner/manifest.json"
+    },
+    {
       "id": "canvas-note-tools",
       "name": "Canvas Note Tools",
       "description": "Enhances TriliumNext's Excalidraw integration: create child notes directly from shapes, assign relation types per arrow, and batch-save all links at once.",
