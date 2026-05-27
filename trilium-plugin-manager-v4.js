@@ -680,7 +680,8 @@ async function installPlugin(p, btn) {
           for (const def of manifest.notes) {
             let content = def.content || '';
             if (def.sourceUrl) {
-              const srcBuf = await httpGet(baseUrl + def.sourceUrl);
+              const srcUrl = def.sourceUrl.match(/^https?:\/\//) ? def.sourceUrl : baseUrl + def.sourceUrl;
+              const srcBuf = await httpGet(srcUrl);
               content = srcBuf.toString('utf-8');
             }
             const created = await api.createNewNote({
