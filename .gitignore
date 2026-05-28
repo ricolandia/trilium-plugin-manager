@@ -4,6 +4,10 @@ Manager-v*.js
 # Discussion post (published separately)
 DISCUSSION_POST.md
 
+# Other files
+AGENTS.md
+CONTEXTO.md
+
 # AI tooling config (local to each developer)
 .opencode/skills/
 .opencodeignore
