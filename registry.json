@@ -4,7 +4,7 @@
     "author": "ricolandia",
     "description": "Personal plugin registry for TriliumNext Plugin Manager.",
     "homepage": "https://github.com/ricolandia/trilium-plugin-manager",
-    "updated": "2025-05-29"
+    "updated": "2025-05-30"
   },
   "plugins": [
     {
@@ -150,6 +150,16 @@
       "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Word-Counter",
       "tags": ["word", "counter"],
       "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Word-Counter/Word%20count.js"
+    },
+    {
+      "id": "mastodon-sender",
+      "name": "Mastodon Sender",
+      "description": "Compose and post toots directly from TriliumNext with visibility control, content warnings, and current note support.",
+      "version": "0.1.0",
+      "author": "ricolandia",
+      "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Mastodon-Sender",
+      "tags": ["mastodon", "social", "fediverse", "productivity"],
+      "manifestUrl": "https://raw.githubusercontent.com/ricolandia/TriliumNext-Toolkit/main/Mastodon-Sender/manifest.json"
     }
   ]
 }
