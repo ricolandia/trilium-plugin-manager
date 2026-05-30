@@ -150,16 +150,6 @@
       "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Word-Counter",
       "tags": ["word", "counter"],
       "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Word-Counter/Word%20count.js"
-    },
-    {
-      "id": "kanboard-integration",
-      "name": "Kanboard Sync",
-      "description": "Bidirectional Kanboard integration — view projects, columns, tasks and create tasks directly from TriliumNext via JSON-RPC API.",
-      "version": "0.1.0",
-      "author": "ricolandia",
-      "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Kanboard-Integration",
-      "tags": ["kanboard", "tasks", "integration", "productivity"],
-      "manifestUrl": "https://raw.githubusercontent.com/ricolandia/TriliumNext-Toolkit/main/Kanboard-Integration/manifest.json"
     }
   ]
 }
