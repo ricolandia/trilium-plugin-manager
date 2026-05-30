@@ -65,7 +65,8 @@
       "author": "ricolandia",
       "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Writers-Tools",
       "tags": ["writing", "screenplay", "comics", "render"],
-     "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Writers-Tools/js-Fountain/js%20-%20Fountain%203.js"
+     "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Writers-Tools/js-Fountain/js%20-%20Fountain%203.js",
+      "manifestUrl": "https://raw.githubusercontent.com/ricolandia/TriliumNext-Toolkit/main/Writers-Tools/js-Fountain/manifest.json"
     },
     {
       "id": "longform-compiler",
@@ -75,7 +76,8 @@
       "author": "ricolandia",
       "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Writers-Tools",
       "tags": ["writing", "export", "longform"],
-      "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Writers-Tools/js-grid/js%20-%20grade.js"
+      "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Writers-Tools/js-grid/js%20-%20grade.js",
+      "manifestUrl": "https://raw.githubusercontent.com/ricolandia/TriliumNext-Toolkit/main/Writers-Tools/js-grid/manifest.json"
     },
     {
       "id": "ai-chat-openrouter",
