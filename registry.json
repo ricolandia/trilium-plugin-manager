@@ -4,7 +4,7 @@
     "author": "ricolandia",
     "description": "Personal plugin registry for TriliumNext Plugin Manager.",
     "homepage": "https://github.com/ricolandia/trilium-plugin-manager",
-    "updated": "2025-05-26"
+    "updated": "2025-05-29"
   },
   "plugins": [
     {
@@ -130,6 +130,16 @@
       "manifestUrl": "https://raw.githubusercontent.com/ricolandia/TriliumNext-Toolkit/main/Knowledge-Debt-Dashboard/manifest.json"
     },
     {
+      "id": "kanboard-integration",
+      "name": "Kanboard Integration",
+      "description": "Integracao com Kanboard via API JSON-RPC. Sincroniza projetos, colunas e tarefas.",
+      "version": "0.6.0",
+      "author": "ricolandia",
+      "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Kanboard-Integration",
+      "tags": ["productivity", "kanban"],
+      "manifestUrl": "https://raw.githubusercontent.com/ricolandia/TriliumNext-Toolkit/main/Kanboard-Integration/manifest.json"
+    },
+    {
       "id": "word-counter",
       "name": "Word Counter",
       "description": "A compact right-pane panel showing word and character counts for the current note, alongside a daily progress bar.",
@@ -138,6 +148,16 @@
       "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Word-Counter",
       "tags": ["word", "counter"],
       "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Word-Counter/Word%20count.js"
+    },
+    {
+      "id": "kanboard-integration",
+      "name": "Kanboard Sync",
+      "description": "Bidirectional Kanboard integration — view projects, columns, tasks and create tasks directly from TriliumNext via JSON-RPC API.",
+      "version": "0.1.0",
+      "author": "ricolandia",
+      "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Kanboard-Integration",
+      "tags": ["kanboard", "tasks", "integration", "productivity"],
+      "manifestUrl": "https://raw.githubusercontent.com/ricolandia/TriliumNext-Toolkit/main/Kanboard-Integration/manifest.json"
     }
   ]
 }
