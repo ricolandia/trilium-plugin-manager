@@ -152,6 +152,16 @@
       "sourceUrl": "https://github.com/ricolandia/TriliumNext-Toolkit/blob/main/Word-Counter/Word%20count.js"
     },
     {
+      "id": "daily-note-navigator",
+      "name": "Daily Note Navigator",
+      "description": "Right-pane widget to navigate between daily journal notes (previous/next day).",
+      "version": "0.6.0",
+      "author": "ricolandia",
+      "homepage": "https://github.com/ricolandia/TriliumNext-Toolkit/tree/main/Daily-Note-Navigator",
+      "tags": ["widget", "productivity"],
+      "sourceUrl": "https://raw.githubusercontent.com/ricolandia/TriliumNext-Toolkit/main/Daily-Note-Navigator/Daily-Note-Navigator.js"
+    },
+    {
       "id": "mastodon-sender",
       "name": "Mastodon Sender",
       "description": "Compose and post toots directly from TriliumNext with visibility control, content warnings, and current note support.",
